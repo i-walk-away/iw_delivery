@@ -28,6 +28,7 @@ async def get_items(
         List of ItemDTOs representing Items.
     """
     items = await item_service.get_all(category_id)
+
     return items
 
 
@@ -44,6 +45,7 @@ async def get_categories(
         List of CategoryDTOs representing Categories.
     """
     categories = await item_service.get_all_categories()
+
     return categories
 
 
@@ -63,6 +65,7 @@ async def get_item(
         ItemDTO representing Item instance.
     """
     item = await item_service.get(item_id)
+
     return item
 
 
@@ -84,6 +87,7 @@ async def create_item(
 
     """
     item = await item_service.add(item_data)
+
     return item
 
 
@@ -108,6 +112,7 @@ async def edit_item(
         UserDTO representing edited User.
     """
     item = await item_service.edit(item_id, edited_data)
+
     return item
 
 
@@ -130,4 +135,5 @@ async def delete_item(
         DeleteItemResponse model.
     """
     await item_service.delete(item_id)
+
     return DeleteItemResponse(success=True)
