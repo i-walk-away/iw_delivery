@@ -4,14 +4,14 @@ from src.iw_delivery.core.dependencies.auth.authentication_manager import get_au
 from src.iw_delivery.core.dependencies.repositories.user_repository import get_user_repository
 from src.iw_delivery.core.security import AuthenticationManager
 from src.iw_delivery.repositories.db.users import UserRepository
-from src.iw_delivery.services.user_service import UserService
+from src.iw_delivery.services.auth_service import AuthService
 
 
-def get_user_service(
-        repository: UserRepository = Depends(get_user_repository),
+def get_auth_service(
+        user_repository: UserRepository = Depends(get_user_repository),
         authentication_manager: AuthenticationManager = Depends(get_authentication_manager),
-) -> UserService:
+) -> AuthService:
     """
-    Constructs a UserService instance with injected UserRepository and AuthenticationManager.
+    Constructs an AuthService instance with injected UserRepository and AuthenticationManager.
     """
-    return UserService(repository, authentication_manager)
+    return AuthService(user_repository, authentication_manager)
