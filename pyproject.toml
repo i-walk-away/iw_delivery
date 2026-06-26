@@ -30,6 +30,7 @@ ignore = [
     "B008",
     "RET504",
     "W293",
+    "ARG001",
 ]
 
 [tool.ruff.format]
