@@ -12,7 +12,7 @@ services:
       - ./src:/app/src
       - ./main.py:/app/main.py
   db:
-    image: mysql:9.3
+    image: mysql:9.7
     ports:
       - "3306:3306"
     environment:
