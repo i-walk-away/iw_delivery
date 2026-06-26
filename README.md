@@ -34,5 +34,8 @@ cp .env.example .env
 - Run the following command to build the project:  
   `docker-compose up --build`
 
-- Apply database migrations:  
-  `alembic upgrade head`
+- Apply database migrations:
+
+```bash
+docker exec -it iw_delivery uv run alembic upgrade head 
+```
