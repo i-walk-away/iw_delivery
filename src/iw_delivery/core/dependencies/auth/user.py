@@ -1,14 +1,13 @@
+from fastapi import Depends
+from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from jwt import decode
 from jwt.exceptions import InvalidTokenError
 
-from fastapi import Depends
-from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
-
-from src.iw_delivery.models.dto.users import UserDTO
-from src.iw_delivery.core.dependencies.services.user_service import get_user_service
-from src.iw_delivery.services.user_service import UserService
-from src.iw_delivery.core.exceptions import InvalidCredentialsException, InsufficientRightsException
 from cfg.cfg import settings
+from src.iw_delivery.core.dependencies.services.user_service import get_user_service
+from src.iw_delivery.core.exceptions import InsufficientRightsException, InvalidCredentialsException
+from src.iw_delivery.models.dto.users import UserDTO
+from src.iw_delivery.services.user_service import UserService
 
 scheme_factory = HTTPBearer(auto_error=False)
 

@@ -1,8 +1,8 @@
-from uuid import uuid4
 from datetime import datetime, timedelta, timezone
+from uuid import uuid4
 
-from passlib.context import CryptContext
 from jwt import encode
+from passlib.context import CryptContext
 
 from cfg.cfg import settings
 
