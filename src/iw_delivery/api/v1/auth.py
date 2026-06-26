@@ -29,4 +29,5 @@ async def login(
         LoginResponse model with access_token and token_type.
     """
     access_token = await auth_service.login(credentials)
+
     return LoginResponse(access_token=access_token)
