@@ -19,7 +19,7 @@ and dispatches the delivery to the user.
 
 ## Documentation
 
-wip
+API specification: [docs/api_specification](docs/api_specification.md) 
 
 ## Setup & Installation
 
