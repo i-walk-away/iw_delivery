@@ -1,7 +1,7 @@
 services:
   app:
     build: .
-    container_name: ufo-delivery
+    container_name: iw_delivery
     command: uv run python main.py
     depends_on:
       db:
