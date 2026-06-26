@@ -13,8 +13,8 @@ from cfg.cfg import settings
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
 config = context.config
-config.set_main_option("sqlalchemy.url", f"{settings.database.url}?async_fallback=true")
-
+sync_url = settings.database.url.replace("mysql+aiomysql://", "mysql+pymysql://")
+config.set_main_option("sqlalchemy.url", sync_url)
 # Interpret the config file for Python logging.
 # This line sets up loggers basically.
 if config.config_file_name is not None:

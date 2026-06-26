@@ -1,7 +1,7 @@
 services:
   app:
     build: .
-    container_name: ufo-delivery
+    container_name: iw_delivery
     command: uv run python main.py
     depends_on:
       db:
@@ -12,7 +12,7 @@ services:
       - ./src:/app/src
       - ./main.py:/app/main.py
   db:
-    image: mysql:9.3
+    image: mysql:9.7
     ports:
       - "3306:3306"
     environment:
