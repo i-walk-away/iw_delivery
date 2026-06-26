@@ -9,4 +9,4 @@ def get_context() -> CryptContext:
     Returns:
         New passlib.CryptContext object
     """
-    return CryptContext(schemes=["bcrypt"], deprecated="auto")
+    return CryptContext(schemes=["sha256_crypt"], deprecated="auto")
