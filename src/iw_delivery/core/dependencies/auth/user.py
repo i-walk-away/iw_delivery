@@ -14,7 +14,7 @@ scheme_factory = HTTPBearer(auto_error=False)
 
 async def get_current_user(
         token: HTTPAuthorizationCredentials = Depends(scheme_factory),
-        user_service: UserService = Depends(get_user_service)
+        user_service: UserService = Depends(get_user_service),
 ) -> UserDTO:
     """
     Retrieves current user from the request's JWT Token.
@@ -27,7 +27,7 @@ async def get_current_user(
         decoded_token = decode(
             token.credentials,
             key=settings.auth.secret_key,
-            algorithms=[settings.auth.algorithm]
+            algorithms=[settings.auth.algorithm],
         )
         phone = decoded_token.get("sub")
         if not phone:
@@ -43,7 +43,7 @@ async def get_current_user(
 
 
 async def get_current_superuser(
-        user: UserDTO = Depends(get_current_user)
+        user: UserDTO = Depends(get_current_user),
 ) -> UserDTO:
     """
     Retrieves current user from the request's JWT Token and ensures it has rights of superuser.

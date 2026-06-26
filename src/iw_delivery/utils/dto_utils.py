@@ -13,5 +13,5 @@ def dump_non_null_fields(model: BaseModel) -> dict:
     Dump all fieds from given model which are not NoneType.
     """
     return {
-            key: value for key, value in model.model_dump().items() if value is not None
-        }
+        key: value for key, value in model.model_dump().items() if value is not None
+    }

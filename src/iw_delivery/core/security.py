@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 from uuid import uuid4
 
 from jwt import encode
@@ -8,7 +8,7 @@ from cfg.cfg import settings
 
 
 class AuthenticationManager:
-    def __init__(self, context: CryptContext):
+    def __init__(self, context: CryptContext) -> None:
         self._context = context
 
     @staticmethod
@@ -27,15 +27,15 @@ class AuthenticationManager:
         data_to_encode.update(
             {
                 "jti": str(uuid4()),
-                "iat": datetime.now(timezone.utc),
-                "exp": datetime.now(timezone.utc) + timedelta(minutes=expires_in),
-            }
+                "iat": datetime.now(UTC),
+                "exp": datetime.now(UTC) + timedelta(minutes=expires_in),
+            },
         )
 
         return encode(
             data_to_encode,
             key=settings.auth.secret_key,
-            algorithm=settings.auth.algorithm
+            algorithm=settings.auth.algorithm,
         )
 
     def hash_password(self, password: str) -> str:

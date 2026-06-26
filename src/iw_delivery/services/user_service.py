@@ -1,19 +1,13 @@
-from src.iw_delivery.models.db.users import User, Address
-from src.iw_delivery.models.dto.users import (
-    UserDTO,
-    AddressDTO,
-    EditAddress,
-    CreateUser,
-    EditUser,
-)
-from src.iw_delivery.repositories.db.users import UserRepository
-from src.iw_delivery.core.security import AuthenticationManager
 from src.iw_delivery.core.exceptions import UserAlreadyExistsException, UserNotFound
-from src.iw_delivery.utils.dto_utils import is_empty, dump_non_null_fields
+from src.iw_delivery.core.security import AuthenticationManager
+from src.iw_delivery.models.db.users import Address, User
+from src.iw_delivery.models.dto.users import (AddressDTO, CreateUser, EditAddress, EditUser, UserDTO)
+from src.iw_delivery.repositories.db.users import UserRepository
+from src.iw_delivery.utils.dto_utils import dump_non_null_fields, is_empty
 
 
 class UserService:
-    def __init__(self, repository: UserRepository, auth_manager: AuthenticationManager):
+    def __init__(self, repository: UserRepository, auth_manager: AuthenticationManager) -> None:
         self._repository = repository
         self._auth_manager = auth_manager
 

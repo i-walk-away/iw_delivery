@@ -6,7 +6,7 @@ from src.iw_delivery.core.security import AuthenticationManager
 
 
 def get_authentication_manager(
-        context: CryptContext = Depends(get_context)
+        context: CryptContext = Depends(get_context),
 ) -> AuthenticationManager:
     """
     Constructs an AuthenticationManager instance with injected

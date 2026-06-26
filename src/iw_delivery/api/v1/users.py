@@ -1,14 +1,8 @@
 from fastapi import APIRouter, Depends
 
-from src.iw_delivery.models.dto.users import (
-    UserDTO,
-    CreateUser,
-    EditUser,
-    AddressDTO,
-    EditAddress,
-)
 from src.iw_delivery.core.dependencies.auth.user import get_current_user
 from src.iw_delivery.core.dependencies.services.user_service import get_user_service
+from src.iw_delivery.models.dto.users import (AddressDTO, CreateUser, EditAddress, EditUser, UserDTO)
 from src.iw_delivery.services.user_service import UserService
 
 router = APIRouter(
@@ -37,7 +31,7 @@ async def create_user(
 
 
 @router.get("", summary="Get current user's information")
-async def get_user(user: UserDTO = Depends(get_current_user)):
+async def get_user(user: UserDTO = Depends(get_current_user)) -> UserDTO:
     """
     Get User from Authorization header.
 
@@ -76,7 +70,7 @@ async def edit_user(
 @router.get("/address", summary="Get current user's address")
 async def get_address(
         user: UserDTO = Depends(get_current_user),
-        user_service: UserService = Depends(get_user_service)
+        user_service: UserService = Depends(get_user_service),
 ) -> AddressDTO:
     """
     Get current user's Address.
@@ -96,7 +90,7 @@ async def get_address(
 async def edit_address(
         address_data: EditAddress,
         user: UserDTO = Depends(get_current_user),
-        user_service: UserService = Depends(get_user_service)
+        user_service: UserService = Depends(get_user_service),
 ) -> AddressDTO:
     """
     Edit current user's Address.
