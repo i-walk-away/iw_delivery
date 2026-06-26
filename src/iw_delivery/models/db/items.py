@@ -2,7 +2,7 @@ from sqlalchemy import ForeignKey, String
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from src.iw_delivery.models.db import Base
-from src.iw_delivery.models.dto.items import ItemDTO, CategoryDTO
+from src.iw_delivery.models.dto.items import CategoryDTO, ItemDTO
 
 
 class Item(Base):
@@ -13,10 +13,10 @@ class Item(Base):
     description: Mapped[str] = mapped_column(String(length=255))
     price: Mapped[float] = mapped_column()
     image_path: Mapped[str] = mapped_column(String(length=255))
-    categories: Mapped[list["Category"]] = relationship(
+    categories: Mapped[list[Category]] = relationship(
         back_populates="items",
         secondary="item_category",
-        lazy="joined"
+        lazy="joined",
     )
     order_items: Mapped[list["OrderItem"]] = relationship(
         back_populates="item",
@@ -43,10 +43,10 @@ class Category(Base):
 
     id: Mapped[int] = mapped_column(primary_key=True)
     name: Mapped[str] = mapped_column(String(length=32))
-    items: Mapped[list["Item"]] = relationship(
+    items: Mapped[list[Item]] = relationship(
         back_populates="categories",
         secondary="item_category",
-        lazy="joined"
+        lazy="joined",
     )
 
     def to_dto(self) -> CategoryDTO:

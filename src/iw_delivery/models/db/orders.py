@@ -9,7 +9,7 @@ class Order(Base):
     __tablename__ = "orders"
 
     id: Mapped[int] = mapped_column(primary_key=True)
-    order_items: Mapped[list["OrderItem"]] = relationship(
+    order_items: Mapped[list[OrderItem]] = relationship(
         back_populates="order",
         lazy="joined",
     )
@@ -33,11 +33,11 @@ class OrderItem(Base):
     order_id: Mapped[int] = mapped_column(ForeignKey("orders.id"), primary_key=True)
     quantity: Mapped[int] = mapped_column(default=1)
 
-    order: Mapped["Order"] = relationship(back_populates="order_items", lazy="joined")
+    order: Mapped[Order] = relationship(back_populates="order_items", lazy="joined")
     item: Mapped["Item"] = relationship(back_populates="order_items", lazy="joined")
 
     def to_dto(self) -> OrderItemDTO:
         return OrderItemDTO(
             item=self.item.to_dto(),
-            quantity=self.quantity
+            quantity=self.quantity,
         )

@@ -16,6 +16,7 @@ target-version = "py314"
 src = ["src"]
 exclude = [
     ".venv",
+    "src/iw_delivery/models"
 ]
 
 [tool.ruff.lint]

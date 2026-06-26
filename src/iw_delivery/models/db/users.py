@@ -14,7 +14,7 @@ class User(Base):
     phone: Mapped[str] = mapped_column(String(length=15))
     address: Mapped[Address] = relationship(back_populates="user", uselist=False, lazy="joined")
     is_superuser: Mapped[bool] = mapped_column(default=False)
-    orders: Mapped[list[Order]] = relationship(back_populates="user")
+    orders: Mapped[list["Order"]] = relationship(back_populates="user")
 
     def to_dto(self) -> UserDTO:
         return UserDTO(
