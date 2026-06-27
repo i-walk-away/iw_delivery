@@ -27,6 +27,7 @@ async def create_user(
         UserDTO representing edited User.
     """
     user = await user_service.add(user_data)
+
     return user
 
 
@@ -64,6 +65,7 @@ async def edit_user(
         UserDTO representing edited User.
     """
     user = await user_service.edit(user.id, edited_data)
+
     return user
 
 
@@ -83,6 +85,7 @@ async def get_address(
         AddressDTO representing Address.
     """
     address = await user_service.get_address(user.id)
+
     return address
 
 
@@ -105,4 +108,5 @@ async def edit_address(
     """
 
     address = await user_service.edit_address(user.id, address_data)
+
     return address
