@@ -25,7 +25,7 @@ def upgrade() -> None:
         sa.Column('id', sa.Integer(), nullable=False),
         sa.Column('name', sa.String(length=32), nullable=False),
         sa.PrimaryKeyConstraint('id'),
-        )
+    )
     op.create_table(
         'items',
         sa.Column('id', sa.Integer(), nullable=False),
@@ -35,7 +35,7 @@ def upgrade() -> None:
         sa.Column('image_path', sa.String(length=255), nullable=False),
         sa.Column('is_available', sa.Boolean(), nullable=False),
         sa.PrimaryKeyConstraint('id'),
-        )
+    )
     op.create_table(
         'users',
         sa.Column('id', sa.Integer(), nullable=False),
@@ -44,42 +44,42 @@ def upgrade() -> None:
         sa.Column('phone', sa.String(length=15), nullable=False),
         sa.Column('is_superuser', sa.Boolean(), nullable=False),
         sa.PrimaryKeyConstraint('id'),
-        )
+    )
     op.create_table(
         'addresses',
         sa.Column('id', sa.Integer(), nullable=False),
         sa.Column('street', sa.String(length=255), nullable=True),
         sa.Column('reference', sa.String(length=255), nullable=True),
         sa.Column('user_id', sa.Integer(), nullable=True),
-        sa.ForeignKeyConstraint(['user_id'], ['users.id'] ),
+        sa.ForeignKeyConstraint(['user_id'], ['users.id']),
         sa.PrimaryKeyConstraint('id'),
         sa.UniqueConstraint('user_id'),
-        )
+    )
     op.create_table(
         'item_category',
         sa.Column('item_id', sa.Integer(), nullable=False),
         sa.Column('category_id', sa.Integer(), nullable=False),
-        sa.ForeignKeyConstraint(['category_id'], ['categories.id'] ),
-        sa.ForeignKeyConstraint(['item_id'], ['items.id'] ),
+        sa.ForeignKeyConstraint(['category_id'], ['categories.id']),
+        sa.ForeignKeyConstraint(['item_id'], ['items.id']),
         sa.PrimaryKeyConstraint('item_id', 'category_id'),
-        )
+    )
     op.create_table(
         'orders',
         sa.Column('id', sa.Integer(), nullable=False),
         sa.Column('is_placed', sa.Boolean(), nullable=False),
         sa.Column('user_id', sa.Integer(), nullable=False),
-        sa.ForeignKeyConstraint(['user_id'], ['users.id'] ),
+        sa.ForeignKeyConstraint(['user_id'], ['users.id']),
         sa.PrimaryKeyConstraint('id'),
-        )
+    )
     op.create_table(
         'order_items',
         sa.Column('item_id', sa.Integer(), nullable=False),
         sa.Column('order_id', sa.Integer(), nullable=False),
         sa.Column('quantity', sa.Integer(), nullable=False),
-        sa.ForeignKeyConstraint(['item_id'], ['items.id'] ),
-        sa.ForeignKeyConstraint(['order_id'], ['orders.id'] ),
+        sa.ForeignKeyConstraint(['item_id'], ['items.id']),
+        sa.ForeignKeyConstraint(['order_id'], ['orders.id']),
         sa.PrimaryKeyConstraint('item_id', 'order_id'),
-        )
+    )
     # ### end Alembic commands ###
 
 

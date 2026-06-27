@@ -19,7 +19,7 @@ and dispatches the delivery to the user.
 
 ## Documentation
 
-API specification: [docs/api_specification](docs/api_specification.md) 
+API specification: [docs/api_specification](docs/api_specification.md)
 
 ## Setup & Installation
 
